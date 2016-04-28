@@ -1,0 +1,188 @@
+﻿<%- include header %>
+<!--顶端的设置,可以进行include-->
+<!-- /section:basics/navbar.layout -->
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+
+    <!-- #section:basics/sidebar -->
+    <div id="sidebar" class="sidebar                  responsive">
+        <script type="text/javascript">
+            try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+        </script>
+
+        <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+            <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+                <button class="btn btn-success">
+                    <i class="ace-icon fa fa-signal"></i>
+                </button>
+
+                <button class="btn btn-info">
+                    <i class="ace-icon fa fa-pencil"></i>
+                </button>
+
+                <!-- #section:basics/sidebar.layout.shortcuts -->
+                <button class="btn btn-warning">
+                    <i class="ace-icon fa fa-users"></i>
+                </button>
+
+                <button class="btn btn-danger">
+                    <i class="ace-icon fa fa-cogs"></i>
+                </button>
+
+                <!-- /section:basics/sidebar.layout.shortcuts -->
+            </div>
+
+            <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+                <span class="btn btn-success"></span>
+
+                <span class="btn btn-info"></span>
+
+                <span class="btn btn-warning"></span>
+
+                <span class="btn btn-danger"></span>
+            </div>
+        </div><!-- /.sidebar-shortcuts -->
+
+        <ul class="nav nav-list">
+            <li class="">
+                <a href="#"><!--此符号表示当前页面-->
+                    <i class="menu-icon fa fa-tachometer"></i>
+                    <span class="menu-text"> 首  页 </span>
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+                    <li class="">
+                        <a href="/login">
+                            <i class="menu-icon fa fa-desktop"></i><!--此处接得是图片-->
+                            <span class="menu-text">登  录 </span>
+                        </a>
+
+                        <b class="arrow"></b>
+                    </li>
+
+                    <li class=" ">
+                        <a href="/register">
+                            <i class="menu-icon fa fa-pencil-square-o"></i><!-- fa-caret-right向右的箭头-->
+                             <span class="menu-text">注  册 </span>
+                        </a>
+
+                        <b class="arrow"></b>
+                    </li>
+
+            <!--<li class="active open">
+                <a href="#" class="dropdown-toggle">形成下拉列表-->
+            <li class=" ">
+                <a href="/post">
+
+                    <i class="menu-icon fa fa-file-o"></i>
+							<span class="menu-text">发  表 </span>
+
+                </a>
+
+                    <b class="arrow "></b>
+            </li>
+
+            <li class=" ">
+                <a href="/quit">
+                    <i class="menu-icon fa fa-adjust"></i><!-- fa-caret-right向右的箭头-->
+                    <span class="menu-text">退  出</span>
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+                </ul>
+        <!-- /.nav-list -->
+
+        <!-- #section:basics/sidebar.layout.minimize -->
+        <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+            <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+        </div>
+
+        <!-- /section:basics/sidebar.layout.minimize -->
+        <script type="text/javascript">
+            try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+        </script>
+    </div>
+
+    <!-- /section:basics/sidebar -->
+    <div class="main-content"><!--界面右边-->
+        <div class="main-content-inner">
+            <!-- #section:basics/content.breadcrumbs -->
+
+
+            <!-- /section:basics/content.breadcrumbs -->
+            <div class="page-content">
+
+                <!-- /section:settings.box -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <% if(user) { %>
+                        <!-- 登录后 -->
+                        <div class="container">
+                            <div class="row">
+                                <table class="table table-striped">
+                                    <caption>我的笔记列表</caption>
+                                    <thead>
+                                    <tr>
+                                        <th>标题</th>
+                                        <th>标签</th>
+                                        <th>日期</th>
+                                    </tr>
+                                    </thead>
+
+                                    <!--赋值给视图!-->
+                                    <tbody>
+                                    <% notes.forEach(function(note) { %>
+                                    <tr>
+                                        <td>
+                                            <a href="/detail/<%= note._id %>"><%= note.title %></a>
+                                        </td>
+                                        <td><%= note.tag %></td>
+                                        <td><%= note.createTime %></td>
+                                    </tr>
+                                    <% }); %>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <%} else { %>
+                        <!-- 登录前 -->
+                        <div class="text-center page-title"></div>
+                        <div class="container">
+                            <div class="jumbotron">
+                                <h1> 人 间 四 月 天</h1>
+                                <p>   ---- 心 若 向 阳 ，无 所 畏 惧 ！【格子阁】</p>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <h3>自 己</h3>
+                                    <p>不管什么天气，记得随时带上自己的阳光 </p>
+                                    <p>不管什么遭遇，记得内心装满开心的童话 </p>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h3>寻 找</h3>
+                                    <p>我们一直寻找的，却是自己原本早已拥有的 </p>
+                                    <p>我们总是东张西望，唯独漏了自己最想要的</p>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h3>幸 福</h3>
+                                    <p>幸福没有明天，也没有昨天 </p>
+                                    <p>它不怀念过去，也不向往未来，它只有现在</p>
+                                </div>
+                            </div>
+                        </div>
+                        <%} %>
+
+                        <!-- PAGE CONTENT ENDS -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.page-content -->
+        </div>
+    </div><!-- /.main-content -->
+<%- include footer %>
